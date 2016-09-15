@@ -5,6 +5,7 @@ import pinterest from '../util/pinterest';
 //var Isotope = require('isotope-layout');
 
 declare var Isotope:any;
+declare var imagesLoaded:any;
 
 
 interface IProps {
@@ -27,23 +28,24 @@ class Pins extends React.Component<IProps, IState> {
     *  Fetch user boards from Pinterest
     */
     fetchBoardData(boardId) {
+        let grid = document.getElementById('pin-grid');
         pinterest.myBoardPins(boardId, response => {
             this.setState({ pins: response.data, boardName: response.data[0].board.name });
-            console.log(this.state.pins)
-            //this.initIsotope();
+            imagesLoaded(grid, () => {
+                this.initIsotope(grid) 
+            });
         }
     )};
   
-    initIsotope() {
-        let grid = document.getElementById('pin-grid');
-        let iso = new Isotope( grid, {
-        // options...
-        itemSelector: '.grid-item',
-        masonry: {
-            columnWidth: 400
-        }
+    initIsotope(grid) {
+        let iso = new Isotope(grid, {
+            // options...
+            itemSelector: '.grid-item',
+            layoutMode: 'masonry',
+            masonry: {
+                
+            }
         });
-      
     }
 
   render() {
