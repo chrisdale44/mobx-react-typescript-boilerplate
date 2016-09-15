@@ -19,19 +19,19 @@ class BoardTile extends React.Component<IProps, IState> {
         let tileStyle = {
             position: 'relative', 
             display: 'inline-block', 
-            height: 200, 
-            width: 200,
             borderRadius: 8, 
             verticalAlign: 'top', 
             margin: 10, 
-            overflow: 'hidden'
+            overflow: 'hidden',
+            fontSize: 0
         };
 
-        let imgStyle = {
-            position: 'absolute', 
-            minWidth: '100%', 
-            minHeight: '100%'
+        let imgStyle = { 
+            maxHeight: 300,
+            maxWidth: 300
         }
+
+        console.log(board)
 
         return (
             <Link style={tileStyle} to={`/board/${board.id}`}>

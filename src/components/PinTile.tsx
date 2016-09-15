@@ -18,23 +18,21 @@ class PinTile extends React.Component<IProps, IState> {
         let tileStyle = {
             position: 'relative', 
             display: 'inline-block', 
-            height: 200,
-            width: 200,
             borderRadius: 8, 
             verticalAlign: 'top', 
             margin: 10, 
-            overflow: 'hidden'
+            overflow: 'hidden',
+            fontSize: 0
         };
 
         let imgStyle = {
-            position: 'absolute', 
-            minWidth: '100%', 
-            minHeight: '100%'
+            maxHeight: 300,
+            maxWidth: 300
         }
 
         return (
-            <Link style={tileStyle} to={`/pin/${pin.id}`}>
-                <img src={pin.image.large.url} style={imgStyle} />
+            <Link style={tileStyle} to={`/pin/${pin.id}`} className="grid-item">
+                <img src={pin.image.original.url} style={imgStyle} />
             </Link>
         )
     }

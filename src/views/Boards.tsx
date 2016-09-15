@@ -23,7 +23,8 @@ class Boards extends React.Component<any, IState> {
     }
 
     render() {
-        let boardGrid = (this.state && this.state.boards) ? this.state.boards.map((board) => <BoardTile data={board} key={board.id} />) : 'No boards';
+        let boardGrid = (this.state && this.state.boards) ? 
+            this.state.boards.map((board) => <BoardTile data={board} key={board.id} />) : '';
         return (
             <div>
                 <h1>Boards!</h1>
