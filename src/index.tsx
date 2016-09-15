@@ -2,9 +2,9 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Router, Route, hashHistory } from 'react-router';
 
-import Login from './components/Login';
-import Boards from './components/Boards';
-import Pins from './components/Pins';
+import Login from './views/Login';
+import Boards from './views/Boards';
+import Pins from './views/Pins';
 import pinterest from './util/pinterest';
 
 function requireAuth(nextState, replace) {
