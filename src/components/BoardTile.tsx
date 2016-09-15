@@ -15,8 +15,9 @@ class BoardTile extends React.Component<IProps, IState> {
         let board = this.props.data;
 
         return (
-            <div style={{height: 100, width: 100, margin: 10, padding: 10, border: '1px solid black'}}>
-                {board.name}
+            <div style={{position: 'relative', display: 'inline-block', height: 250, width: 250, borderRadius: 8, verticalAlign: 'top', margin: 10, overflow: 'hidden'}}>
+                <h2>{board.name}</h2>
+                <img src={board.image.large.url} style={{position: 'absolute', width: '100%'}} />
             </div>
         )
     }
