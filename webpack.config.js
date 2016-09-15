@@ -20,6 +20,20 @@ module.exports = {
       test: /\.tsx?$/,
       loaders: ['ts-loader'],
       include: path.join(__dirname, 'src')
+    },{
+        test: /\.css$/,
+        loaders: [
+            'style?sourceMap',
+            'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
+        ]
+    },{
+        test: /\.scss$/,
+        loaders: [
+            'style',
+            'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+            'resolve-url',
+            'sass'
+        ]
     }]
   }
 };

@@ -2,6 +2,8 @@ import * as React from 'react';
 import { BoardTile } from '../components';
 import pinterest from '../util/pinterest';
 
+let styles = require('./../style/main.css');
+
 interface IState {
     boards: DTO.IBoardsDto[]
 }
@@ -25,7 +27,7 @@ class Boards extends React.Component<any, IState> {
     render() {
         let boardGrid = (this.state && this.state.boards) ? this.state.boards.map((board) => <BoardTile data={board} key={board.id} />) : 'No boards';
         return (
-            <div>
+            <div className={styles.testClass}>
                 <h1>Boards!</h1>
                 {boardGrid}
             </div>
