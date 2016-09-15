@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router';
 
 interface IProps {
     data: any,
@@ -13,12 +14,29 @@ interface IState {
 class BoardTile extends React.Component<IProps, IState> {
     render() {
         let board = this.props.data;
+        //console.log(board);
+        
+        let tileStyle = {
+            position: 'relative', 
+            display: 'inline-block', 
+            height: 200, 
+            width: 200,
+            borderRadius: 8, 
+            verticalAlign: 'top', 
+            margin: 10, 
+            overflow: 'hidden'
+        };
+
+        let imgStyle = {
+            position: 'absolute', 
+            minWidth: '100%', 
+            minHeight: '100%'
+        }
 
         return (
-            <div style={{position: 'relative', display: 'inline-block', height: 250, width: 250, borderRadius: 8, verticalAlign: 'top', margin: 10, overflow: 'hidden'}}>
-                <h2>{board.name}</h2>
-                <img src={board.image.large.url} style={{position: 'absolute', width: '100%'}} />
-            </div>
+            <Link style={tileStyle} to={`/board/${board.id}`}>
+                <img src={board.image.large.url} style={imgStyle} />
+            </Link>
         )
     }
 };
