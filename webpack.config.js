@@ -1,5 +1,7 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const autoprefixer = require('autoprefixer')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const webpack = require('webpack');
 
 module.exports = {
   devtool: 'eval',
@@ -10,10 +12,14 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/static/'
+    publicPath: '/build/'
   },
+  plugins: [
+    new ExtractTextPlugin('style.css', { allChunks: true }),
+  ],
   resolve: {
-    extensions: ['', '.js', '.ts', '.tsx']
+    extensions: ['', '.js', '.ts', '.tsx'],
+    root: [path.join(__dirname, './src')]
   },
   module: {
     loaders: [{
@@ -21,19 +27,15 @@ module.exports = {
       loaders: ['ts-loader'],
       include: path.join(__dirname, 'src')
     },{
-        test: /\.css$/,
-        loaders: [
-            'style?sourceMap',
-            'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
-        ]
-    },{
         test: /\.scss$/,
         loaders: [
-            'style',
-            'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
-            'resolve-url',
-            'sass'
+            ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader')
         ]
     }]
-  }
+  },
+  postcss: [
+    autoprefixer({
+      browsers: ['last 2 versions']
+    })
+  ],
 };
