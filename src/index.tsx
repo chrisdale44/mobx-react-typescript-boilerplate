@@ -1,40 +1,25 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {observable} from 'mobx';
-import {observer} from 'mobx-react';
-import DevTools from 'mobx-react-devtools';
+import { Router, Route, hashHistory } from 'react-router';
 
-class AppState {
-    @observable timer = 0;
-    
-    constructor() {
-        setInterval(() => {
-            this.timer += 1;
-        }, 1000);
-    }
-    
-    resetTimer() {
-        this.timer = 0;
-    }
+import Login from './components/Login';
+import Boards from './components/Boards';
+import Pins from './components/Pins';
+import pinterest from './util/pinterest';
+
+function requireAuth(nextState, replace) {
+  if (!pinterest.loggedIn()) {
+    replace({
+      pathname: '/login',
+      state: { nextPathname: nextState.location.pathname }
+    });
+  }
 }
 
-@observer
-class TimerView extends React.Component<{appState: AppState}, {}> {
-    render() {
-        return (
-            <div>
-                <button onClick={this.onReset}>
-                    Seconds passed: {this.props.appState.timer}
-                </button>
-                <DevTools />
-            </div>
-        );
-     }
-
-     onReset = () => {
-         this.props.appState.resetTimer();
-     }
-};
-
-const appState =  new AppState();
-ReactDOM.render(<TimerView appState={appState} />, document.getElementById('root'));
+ReactDOM.render ((
+    <Router history={hashHistory}>
+        <Route path="/" component={Boards} onEnter={requireAuth}/>
+        <Route path="/login" component={Login} />
+        <Route path="/board/:boardId" component={Pins} />
+    </Router>
+), document.getElementById('app'));
