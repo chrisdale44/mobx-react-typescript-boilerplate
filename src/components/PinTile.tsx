@@ -26,12 +26,11 @@ class PinTile extends React.Component<IProps, IState> {
         };
 
         let imgStyle = {
-            maxHeight: 300,
             maxWidth: 300
         }
 
         return (
-            <Link style={tileStyle} to={`/pin/${pin.id}`} className="grid-item">
+            <Link style={tileStyle} to={`/pin/${pin.id}`} className={`grid-item ${pin.classes}`}>
                 <img src={pin.image.original.url} style={imgStyle} />
             </Link>
         )
