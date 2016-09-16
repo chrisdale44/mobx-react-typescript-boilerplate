@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { Link } from 'react-router';
-import { PinTile } from '../components'
+import { PinTile, TagsSearch, TagsButtons } from '../components';
 import pinterest from '../util/pinterest';
 import * as _ from 'lodash';
-//var Isotope = require('isotope-layout');
 
 declare var Isotope:any;
 declare var imagesLoaded:any;
-
 
 interface IProps {
     params: any
@@ -18,12 +16,12 @@ interface IState {
     boardName?: string,
     pins?: DTO.IPinsDto[],
     allHashtags?: string[],
-    searchTerm?: string
+    searchTerm?: string,
+    isoGrid?: any
 }
 
 // does this need to be wrapped in withRouter?
 class Pins extends React.Component<IProps, IState> {
-    isoGrid;
     constructor() {
         super();
         this.state = { searchTerm: '' };
@@ -71,65 +69,27 @@ class Pins extends React.Component<IProps, IState> {
         }
         return allHashtags;
     }
-
-    handleSearch = (e) => {
-        let searchTerm = e.target.value;
-        this.setState({ searchTerm: searchTerm });
-
-        if (!searchTerm) {
-            return;
-        }
-
-        // todo: split multiple search terms here?
-
-        let tag, matchingTags = '';
-        for (let i = 0; i < this.state.allHashtags.length; i++) {
-            tag = this.state.allHashtags[i];
-            if (_.includes(tag, searchTerm) ){
-                if (matchingTags) {
-                    matchingTags += ', '    
-                }
-                matchingTags += `.${tag}`;
-            }
-        }
-
-        searchTerm = matchingTags || `.${searchTerm}`;
-
-        if (!this.isoGrid) {
-            console.log('isotope not initialised yet')
-        }
-
-        this.isoGrid.arrange({ filter: searchTerm });
-    }
-
-    handleFilter = (tag) => {
-        if (!this.isoGrid) {
-            console.log('isotope not initialised yet')
-        }
-        this.isoGrid.arrange({filter: `.${tag}`});
-    }
   
     initIsotope() {
         console.log('initialised')
-        this.isoGrid = new Isotope('#pin-grid', {
-            itemSelector: '.grid-item',
-            layoutMode: 'masonry',
+        this.setState({ 
+            isoGrid: new Isotope('#pin-grid', {
+                itemSelector: '.grid-item',
+                layoutMode: 'masonry',
+            })
         });
     }
 
   render() {
     let title = (this.state && this.state.boardName) ? this.state.boardName : 'Loading...';
     let pinGrid = (this.state && this.state.pins) ? this.state.pins.map((pin) => <PinTile data={pin} key={pin.id} />) : '';
-    let filters = (this.state && this.state.allHashtags) ? this.state.allHashtags.map((tag) => <button key={tag} data-filter={`.${tag}`} onClick={() => this.handleFilter(tag)}>{tag}</button>) : '';
     
     return (
         <div>
             <Link to={'/'}>Back</Link>
             <h1 style={{textAlign: 'center'}}>{title}</h1>
-            <input type='text' placeholder="Search tags" value={this.state.searchTerm} onChange={this.handleSearch} />
-            <div id="filter-buttons">
-                {filters}
-            </div>
+            <TagsSearch tags={this.state.allHashtags} isoGrid={this.state.isoGrid} />
+            <TagsButtons tags={this.state.allHashtags} isoGrid={this.state.isoGrid} />
             <div id="pin-grid">
                 {pinGrid}
             </div>
