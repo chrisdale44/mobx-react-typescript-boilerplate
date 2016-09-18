@@ -14,7 +14,6 @@ interface IState {
 class BoardTile extends React.Component<IProps, IState> {
     render() {
         let board = this.props.data;
-        //console.log(board);
         
         let tileStyle = {
             position: 'relative', 
@@ -31,11 +30,9 @@ class BoardTile extends React.Component<IProps, IState> {
             maxWidth: 300
         }
 
-        console.log(board)
-
         return (
             <Link style={tileStyle} to={`/board/${board.id}`}>
-                <img src={board.image.large.url} style={imgStyle} />
+                <img src={board.image.small.url} style={imgStyle} />
             </Link>
         )
     }

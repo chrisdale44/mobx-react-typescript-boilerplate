@@ -31,7 +31,7 @@ class PinTile extends React.Component<IProps, IState> {
 
         return (
             <Link style={tileStyle} to={`/pin/${pin.id}`} className={`grid-item ${pin.classes}`}>
-                <img src={pin.image.original.url} style={imgStyle} />
+                <img src={pin.image.small.url} style={imgStyle} />
             </Link>
         )
     }
