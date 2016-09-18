@@ -50,7 +50,7 @@ var Pinterest = {
      *  @param {Function} callback - function fired on completion
      */
     myBoardPins: function(boardId, callback) {
-        PDK.request(`/boards/${boardId}/pins/`, {fields: PIN.PIN_FIELDS, limit: 40 }, callback);
+        PDK.request(`/boards/${boardId}/pins/`, {fields: PIN.PIN_FIELDS, limit: 100 }, callback);
     }
 };
 
