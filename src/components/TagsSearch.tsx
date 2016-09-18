@@ -65,6 +65,7 @@ class SearchTags extends React.Component<IProps, IState> {
 
         if (typeof this.props.isoGrid === "undefined") {
             console.log('isotope not initialised yet')
+            return;
         }
 
         this.props.isoGrid.arrange({ filter: searchTerm });
