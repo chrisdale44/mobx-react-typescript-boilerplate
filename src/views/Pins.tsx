@@ -36,6 +36,8 @@ class Pins extends React.Component<IProps, IState> {
     */
     fetchBoardData(boardId) {
         pinterest.myBoardPins(boardId, response => {
+            // todo: test response here
+
             this.setState({ allHashtags: this.processHashtags(response.data) });
             
             this.setState({ pins: response.data, boardName: response.data[0].board.name });
@@ -80,22 +82,22 @@ class Pins extends React.Component<IProps, IState> {
         });
     }
 
-  render() {
-    let title = (this.state && this.state.boardName) ? this.state.boardName : 'Loading...';
-    let pinGrid = (this.state && this.state.pins) ? this.state.pins.map((pin) => <PinTile data={pin} key={pin.id} />) : '';
-    
-    return (
-        <div>
-            <Link to={'/'}>Back</Link>
-            <h1 style={{textAlign: 'center'}}>{title}</h1>
-            <TagsSearch tags={this.state.allHashtags} isoGrid={this.state.isoGrid} />
-            <TagsButtons tags={this.state.allHashtags} isoGrid={this.state.isoGrid} />
-            <div id="pin-grid">
-                {pinGrid}
+    render() {
+        let title = (this.state && this.state.boardName) ? this.state.boardName : 'Loading...';
+        let pinGrid = (this.state && this.state.pins) ? this.state.pins.map((pin) => <PinTile data={pin} key={pin.id} />) : '';
+        
+        return (
+            <div>
+                <Link to={'/'}>Back</Link>
+                <h1 style={{textAlign: 'center'}}>{title}</h1>
+                <TagsSearch tags={this.state.allHashtags} isoGrid={this.state.isoGrid} />
+                <TagsButtons tags={this.state.allHashtags} isoGrid={this.state.isoGrid} />
+                <div id="pin-grid">
+                    {pinGrid}
+                </div>
             </div>
-        </div>
-    )
-  }
+        )
+    }
 };
 
 export default Pins;
