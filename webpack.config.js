@@ -4,19 +4,13 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const webpack = require('webpack');
 
 module.exports = {
-  devtool: 'eval',
-  entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    './src/index'
-  ],
+  devtool: 'eval-source-map',
+  entry: './src/index',
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: '/build/'
+    publicPath: '/public/'
   },
-  plugins: [
-    new ExtractTextPlugin('style.css', { allChunks: true }),
-  ],
   resolve: {
     extensions: ['', '.js', '.ts', '.tsx'],
     root: [path.join(__dirname, './src')]
@@ -27,12 +21,14 @@ module.exports = {
       loaders: ['ts-loader'],
       include: path.join(__dirname, 'src')
     },{
-        test: /\.scss$/,
-        loaders: [
-            ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader')
-        ]
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'),
+        include: __dirname + '/src'
     }]
   },
+  plugins: [
+    new ExtractTextPlugin('[name].css', { allChunks: true }),
+  ],
   postcss: [
     autoprefixer({
       browsers: ['last 2 versions']

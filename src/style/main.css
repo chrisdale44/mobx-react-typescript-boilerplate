@@ -1,0 +1,15 @@
+h1 {
+  color: #505050;
+}
+
+.tagButton {
+  display: inline-block;
+  border: 1px solid #202020;
+  border-left: 0;
+  color: #101010;
+}
+
+.tagButtonSelected {
+  background-color: #3F51B5;
+  color: white;
+}
