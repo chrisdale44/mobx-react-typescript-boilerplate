@@ -1,11 +1,21 @@
-# React-TypeScript
+# Pinterest Extension App
 
-Minimal boilerplate for a single-page app using MobX, React and TypeScript with TSX.
+An app to extend the functionality of Pinterest to allow filtering and searching Pins by their hashtags.
+
+Tech stack:
+
+* React
+* React Router
+* Typescript
+* Mobx
+* ES6
+* CSS Modules 
+* Webpack
+* Pinterest SDK (OAuth2)
+* Pinterest API
 
 Initial run:
 
 * Install Node.js
 * `npm install`
 * `npm start`
-
-For simplicity sake Webpack Hot Module Reloading is disabled. If you want to use HMR, see the [Reactive2015 demo](https://github.com/mobxjs/mobx-reactive2015-demo) to see a valid setup.
