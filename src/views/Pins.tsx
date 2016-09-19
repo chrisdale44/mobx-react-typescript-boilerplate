@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Link } from 'react-router';
-import { PinTile, TagsSearch, TagsButtons } from '../components';
+import { PinTile, TagsSearch, TagsButtons, LogoutButton } from '../components';
 import pinterest from '../util/pinterest';
 import * as _ from 'lodash';
+let styles = require('../style/main.css');
 
 declare var Isotope:any;
 declare var imagesLoaded:any;
@@ -43,7 +44,7 @@ class Pins extends React.Component<IProps, IState> {
             this.setState({ pins: response.data, boardName: response.data[0].board.name });
 
             // Initialise Isotope once images have loaded
-            imagesLoaded(document.getElementById('pin-grid'), () => {
+            imagesLoaded(document.getElementById(styles.pinGrid), () => {
                 this.initIsotope(); 
             });
         }
@@ -75,7 +76,7 @@ class Pins extends React.Component<IProps, IState> {
     initIsotope() {
         console.log('initialised')
         this.setState({ 
-            isoGrid: new Isotope('#pin-grid', {
+            isoGrid: new Isotope(`#${styles.pinGrid}`, {
                 itemSelector: '.grid-item',
                 layoutMode: 'masonry',
             })
@@ -89,10 +90,11 @@ class Pins extends React.Component<IProps, IState> {
         return (
             <div>
                 <Link to={'/'}>Back</Link>
+                <LogoutButton/>
                 <h1 style={{textAlign: 'center'}}>{title}</h1>
                 <TagsSearch tags={this.state.allHashtags} isoGrid={this.state.isoGrid} />
                 <TagsButtons tags={this.state.allHashtags} isoGrid={this.state.isoGrid} />
-                <div id="pin-grid">
+                <div id={styles.pinGrid} className={styles.gridContainer}>
                     {pinGrid}
                 </div>
             </div>

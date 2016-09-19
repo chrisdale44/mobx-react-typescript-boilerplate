@@ -3,41 +3,41 @@ import { withRouter } from 'react-router';
 
 import pinterest from '../util/pinterest';
 
-const Login = withRouter (
-    React.createClass({
-        getInitialState() {
-            return {
-                pinterest: pinterest.loggedIn()
-            }
-        },
-
-        // might not be necessary:
-        // componentDidMount() {
-        //     if (this.state.pinterest) {
-        //         this.context.router.transitionTo('feed');
-        //     }
-        // },
-
-        resetState() {
-            var state = {
-                pinterest: pinterest.loggedIn()
-            };
-
-            if (state.pinterest) {
-                this.context.router.transitionTo('feed');
-            } else {
-                this.setState(state);
-            }
-        },
-
-        pinLogin() {
-            pinterest.login(this.resetState);
-        },
-
-        render() {
-            return (<button className="button button--pinterest" onClick={this.pinLogin}>Log in</button>);
+class Login extends React.Component<any, any> {
+    constructor() {
+        super();
+        this.state = {
+            pinterest: pinterest.loggedIn()
         }
-    })
-);
+        
+    }
 
-export default Login;
+    componentDidMount() {
+        if (this.state.pinterest) {
+            this.props.router.replace('/boards');
+        }
+    }
+
+    resetState = () => {
+        var state = {
+            pinterest: pinterest.loggedIn()
+        };
+
+        if (state.pinterest) {
+            this.props.router.push('/boards');
+        } else {
+            this.setState(state);
+        }
+    }
+
+    pinLogin = () => {
+        pinterest.login(this.resetState);
+    }
+
+    render() {
+        return (<button className="button button--pinterest" onClick={this.pinLogin}>Log in</button>);
+    }
+}
+
+
+export default withRouter(Login);

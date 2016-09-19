@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { BoardTile } from '../components';
+import { BoardTile, LogoutButton } from '../components';
 import pinterest from '../util/pinterest';
+let styles = require('../style/main.css');
 
 interface IState {
     boards: DTO.IBoardsDto[]
@@ -27,8 +28,11 @@ class Boards extends React.Component<any, IState> {
             this.state.boards.map((board) => <BoardTile data={board} key={board.id} />) : '';
         return (
             <div>
-                <h1>Boards!</h1>
-                {boardGrid}
+                <LogoutButton/>
+                <h1 style={{textAlign: 'center'}}>Boards</h1>
+                <div className={styles.gridContainer}>
+                    {boardGrid}
+                </div>
             </div>
         )
     }
