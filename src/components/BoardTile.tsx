@@ -32,7 +32,7 @@ class BoardTile extends React.Component<IProps, IState> {
 
         return (
             <Link style={tileStyle} to={`/board/${board.id}`}>
-                <img src={board.image.small.url} style={imgStyle} />
+                <img src={board.image.large.url} style={imgStyle} />
             </Link>
         )
     }
