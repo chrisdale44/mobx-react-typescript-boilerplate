@@ -60,7 +60,7 @@ class TagsMenu extends React.Component<IProps, IState> {
             this.props.tags.map((tag) => <div key={tag} data-filter={`.${tag}`} onClick={this.handleFilter} className={styles.tagButton}>{tag}</div>) : '';
 
         return (
-            <div id="filter-buttons">
+            <div className={styles.buttonsContainer}>
                 {buttons}
             </div>
         )
