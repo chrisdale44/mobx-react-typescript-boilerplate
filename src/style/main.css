@@ -1,15 +1,59 @@
+* {
+  font-family: 'Fira Sans', sans-serif;
+}
+
+body {
+  min-width: 320px; 
+}
+
 h1 {
-  color: #505050;
+  color: #909090;
+}
+
+.searchContainer {
+  text-align: center;
+}
+
+.searchBar {
+  padding: 6px;
+  font-size: 14px;
+  color: #202020;
+  margin: 0 20px;
+  width: 300px;
+  text-align: left;
+}
+
+.buttonsContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size:0;
+  margin: 20px 10%;
 }
 
 .tagButton {
   display: inline-block;
-  border: 1px solid #202020;
-  border-left: 0;
-  color: #101010;
+  color: #202020;
+  padding: 6px;
+  text-transform: lowercase;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+}
+
+.tagButton:hover {
+  background-color: #64B5F6; 
 }
 
 .tagButtonSelected {
   background-color: #3F51B5;
   color: white;
+}
+
+#pinGrid {
+  
+}
+
+.gridContainer {
+  text-align: center;
 }
