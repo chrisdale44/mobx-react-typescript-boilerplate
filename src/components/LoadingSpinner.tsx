@@ -8,19 +8,19 @@ class LoadingSpinner extends React.Component<any, any> {
 
     render() {
         return (
-          <div className='sk-fading-circle'>
-            <div className='sk-circle1 sk-circle'></div>
-            <div className='sk-circle2 sk-circle'></div>
-            <div className='sk-circle3 sk-circle'></div>
-            <div className='sk-circle4 sk-circle'></div>
-            <div className='sk-circle5 sk-circle'></div>
-            <div className='sk-circle6 sk-circle'></div>
-            <div className='sk-circle7 sk-circle'></div>
-            <div className='sk-circle8 sk-circle'></div>
-            <div className='sk-circle9 sk-circle'></div>
-            <div className='sk-circle10 sk-circle'></div>
-            <div className='sk-circle11 sk-circle'></div>
-            <div className='sk-circle12 sk-circle'></div>
+          <div className={styles.skFadingCircle}>
+            <div className={`${styles.skCircle1} ${styles.skCircle}`}></div>
+            <div className={`${styles.skCircle2} ${styles.skCircle}`}></div>
+            <div className={`${styles.skCircle3} ${styles.skCircle}`}></div>
+            <div className={`${styles.skCircle4} ${styles.skCircle}`}></div>
+            <div className={`${styles.skCircle5} ${styles.skCircle}`}></div>
+            <div className={`${styles.skCircle6} ${styles.skCircle}`}></div>
+            <div className={`${styles.skCircle7} ${styles.skCircle}`}></div>
+            <div className={`${styles.skCircle8} ${styles.skCircle}`}></div>
+            <div className={`${styles.skCircle9} ${styles.skCircle}`}></div>
+            <div className={`${styles.skCircle10} ${styles.skCircle}`}></div>
+            <div className={`${styles.skCircle11} ${styles.skCircle}`}></div>
+            <div className={`${styles.skCircle12} ${styles.skCircle}`}></div>
           </div>
         )
     }

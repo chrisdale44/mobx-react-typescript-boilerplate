@@ -6,7 +6,7 @@ const webpack = require('webpack');
 const precss = require('precss');
 
 let sassLoader = ExtractTextPlugin.extract('style', [
-  'css',
+  'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
   'postcss-loader',
   'sass?precision=3'
 ].join('!'));
@@ -29,8 +29,9 @@ module.exports = {
       loaders: ['ts-loader'],
       include: path.join(__dirname, 'src')
     },{ 
-      test : /\.(scss|css)$/, 
-      loader : sassLoader 
+      test : /\.(scss|css)$/,       
+      loader : sassLoader,
+      include: __dirname + '/src'
     }]
   },
   sassLoader: {
