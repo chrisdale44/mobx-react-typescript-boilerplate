@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BoardTile, LogoutButton } from '../components';
+import { BoardTile, LogoutButton, LoadingSpinner } from '../components';
 import pinterest from '../util/pinterest';
 let styles = require('../style/main.css');
 
@@ -25,12 +25,12 @@ class Boards extends React.Component<any, IState> {
 
     render() {
         let boardGrid = (this.state && this.state.boards) ? 
-            this.state.boards.map((board) => <BoardTile data={board} key={board.id} />) : '';
+            this.state.boards.map((board) => <BoardTile data={board} key={board.id} />) : <LoadingSpinner/>;
         return (
             <div>
                 <LogoutButton/>
                 <h1 style={{textAlign: 'center'}}>Boards</h1>
-                <div className={styles.gridContainer}>
+                <div>
                     {boardGrid}
                 </div>
             </div>

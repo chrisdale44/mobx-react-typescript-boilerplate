@@ -9,7 +9,6 @@ class Login extends React.Component<any, any> {
         this.state = {
             pinterest: pinterest.loggedIn()
         }
-        
     }
 
     componentDidMount() {
