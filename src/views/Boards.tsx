@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BoardTile, LogoutButton, LoadingSpinner } from '../components';
 import pinterest from '../util/pinterest';
-let styles = require('../style/main.css');
+import {mainStyle} from '../style';
 
 interface IState {
     boards: DTO.IBoardsDto[]

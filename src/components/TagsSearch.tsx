@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as _ from 'lodash';
-let styles = require('../style/main.css');
+import {mainStyle} from '../style';
 
 interface IProps {
     tags: string[],
@@ -70,8 +70,8 @@ class SearchTags extends React.Component<IProps, IState> {
 
     render() {
         return (
-            <div className={styles.searchContainer}>
-                <input type='text' placeholder="Search tags" value={this.state.searchTerm} onChange={this.handleSearch} className={styles.searchBar}/>
+            <div className={mainStyle.searchContainer}>
+                <input type='text' placeholder="Search tags" value={this.state.searchTerm} onChange={this.handleSearch} className={mainStyle.searchBar}/>
             </div>
         )
     }

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Link } from 'react-router';
-import { PinTile, TagsSearch, TagsButtons, LogoutButton } from '../components';
+import { PinTile, TagsSearch, TagsButtons, LogoutButton, LoadingSpinner } from '../components';
 import pinterest from '../util/pinterest';
 import * as _ from 'lodash';
-let styles = require('../style/main.css');
+import {mainStyle} from '../style';
 
 declare var Isotope:any;
 declare var imagesLoaded:any;
@@ -44,7 +44,7 @@ class Pins extends React.Component<IProps, IState> {
             this.setState({ pins: response.data, boardName: response.data[0].board.name });
 
             // Initialise Isotope once images have loaded
-            imagesLoaded(document.getElementById(styles.pinGrid), () => {
+            imagesLoaded(document.getElementById(mainStyle.pinGrid), () => {
                 this.initIsotope(); 
             });
         }
@@ -76,7 +76,7 @@ class Pins extends React.Component<IProps, IState> {
     initIsotope() {
         console.log('initialised')
         this.setState({ 
-            isoGrid: new Isotope(`#${styles.pinGrid}`, {
+            isoGrid: new Isotope(`#${mainStyle.pinGrid}`, {
                 itemSelector: '.grid-item',
                 layoutMode: 'masonry',
             })
@@ -85,7 +85,7 @@ class Pins extends React.Component<IProps, IState> {
 
     render() {
         let title = (this.state && this.state.boardName) ? this.state.boardName : 'Loading...';
-        let pinGrid = (this.state && this.state.pins) ? this.state.pins.map((pin) => <PinTile data={pin} key={pin.id} />) : '';
+        let pinGrid = (this.state && this.state.pins) ? this.state.pins.map((pin) => <PinTile data={pin} key={pin.id} />) : <LoadingSpinner/>;
         
         return (
             <div>
@@ -94,7 +94,7 @@ class Pins extends React.Component<IProps, IState> {
                 <h1 style={{textAlign: 'center'}}>{title}</h1>
                 <TagsSearch tags={this.state.allHashtags} isoGrid={this.state.isoGrid} />
                 <TagsButtons tags={this.state.allHashtags} isoGrid={this.state.isoGrid} />
-                <div id={styles.pinGrid} className={styles.gridContainer}>
+                <div id={mainStyle.pinGrid} className={mainStyle.gridContainer}>
                     {pinGrid}
                 </div>
             </div>

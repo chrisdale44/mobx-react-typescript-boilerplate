@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { withRouter } from 'react-router';
-
 import pinterest from '../util/pinterest';
+import {mainStyle} from '../style';
 
 class Login extends React.Component<any, any> {
     constructor() {
@@ -34,7 +34,7 @@ class Login extends React.Component<any, any> {
     }
 
     render() {
-        return (<button className="button button--pinterest" onClick={this.pinLogin}>Log in</button>);
+        return (<button className={mainStyle.loginButton} onClick={this.pinLogin}>Log in</button>);
     }
 }
 

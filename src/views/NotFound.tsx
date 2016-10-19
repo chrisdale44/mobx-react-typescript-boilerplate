@@ -1,6 +1,5 @@
 import * as React from 'react';
-
-let styles = require('../style/main.css');
+import {mainStyle} from '../style';
 
 class NotFound extends React.Component<any, any> {
     render() {

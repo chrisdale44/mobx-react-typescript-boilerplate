@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as _ from 'lodash';
-
-let styles = require('../style/main.css');
+import {mainStyle} from '../style';
 
 interface IProps {
     tags: string[],
@@ -35,11 +34,11 @@ class TagsMenu extends React.Component<IProps, IState> {
                 return i !== tag
             });
             this.setState({ currentTags: currentTags }, this.updateFilter);
-            e.target.classList.remove(styles.tagButtonSelected);
+            e.target.classList.remove(mainStyle.tagButtonSelected);
         } else {
             // else, select it
             this.setState({ currentTags: this.state.currentTags.concat([tag]) }, this.updateFilter)
-            e.target.classList.add(styles.tagButtonSelected);
+            e.target.classList.add(mainStyle.tagButtonSelected);
         }
     }
 
@@ -57,10 +56,10 @@ class TagsMenu extends React.Component<IProps, IState> {
 
     render() {
         let buttons = (this.props && this.props.tags) ? 
-            this.props.tags.map((tag) => <div key={tag} data-filter={`.${tag}`} onClick={this.handleFilter} className={styles.tagButton}>{tag}</div>) : '';
+            this.props.tags.map((tag) => <div key={tag} data-filter={`.${tag}`} onClick={this.handleFilter} className={mainStyle.tagButton}>{tag}</div>) : '';
 
         return (
-            <div className={styles.buttonsContainer}>
+            <div className={mainStyle.buttonsContainer}>
                 {buttons}
             </div>
         )

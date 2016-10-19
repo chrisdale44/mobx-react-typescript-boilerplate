@@ -1,5 +1,5 @@
 import * as React from 'react';
-let styles = require('../style/loadingSpinner.css');
+import {loadingSpinner} from '../style';
 
 class LoadingSpinner extends React.Component<any, any> {
     constructor() {
@@ -8,19 +8,19 @@ class LoadingSpinner extends React.Component<any, any> {
 
     render() {
         return (
-          <div className={styles.skFadingCircle}>
-            <div className={`${styles.skCircle1} ${styles.skCircle}`}></div>
-            <div className={`${styles.skCircle2} ${styles.skCircle}`}></div>
-            <div className={`${styles.skCircle3} ${styles.skCircle}`}></div>
-            <div className={`${styles.skCircle4} ${styles.skCircle}`}></div>
-            <div className={`${styles.skCircle5} ${styles.skCircle}`}></div>
-            <div className={`${styles.skCircle6} ${styles.skCircle}`}></div>
-            <div className={`${styles.skCircle7} ${styles.skCircle}`}></div>
-            <div className={`${styles.skCircle8} ${styles.skCircle}`}></div>
-            <div className={`${styles.skCircle9} ${styles.skCircle}`}></div>
-            <div className={`${styles.skCircle10} ${styles.skCircle}`}></div>
-            <div className={`${styles.skCircle11} ${styles.skCircle}`}></div>
-            <div className={`${styles.skCircle12} ${styles.skCircle}`}></div>
+          <div className={loadingSpinner.skFadingCircle}>
+            <div className={`${loadingSpinner.skCircle1} ${loadingSpinner.skCircle}`}></div>
+            <div className={`${loadingSpinner.skCircle2} ${loadingSpinner.skCircle}`}></div>
+            <div className={`${loadingSpinner.skCircle3} ${loadingSpinner.skCircle}`}></div>
+            <div className={`${loadingSpinner.skCircle4} ${loadingSpinner.skCircle}`}></div>
+            <div className={`${loadingSpinner.skCircle5} ${loadingSpinner.skCircle}`}></div>
+            <div className={`${loadingSpinner.skCircle6} ${loadingSpinner.skCircle}`}></div>
+            <div className={`${loadingSpinner.skCircle7} ${loadingSpinner.skCircle}`}></div>
+            <div className={`${loadingSpinner.skCircle8} ${loadingSpinner.skCircle}`}></div>
+            <div className={`${loadingSpinner.skCircle9} ${loadingSpinner.skCircle}`}></div>
+            <div className={`${loadingSpinner.skCircle10} ${loadingSpinner.skCircle}`}></div>
+            <div className={`${loadingSpinner.skCircle11} ${loadingSpinner.skCircle}`}></div>
+            <div className={`${loadingSpinner.skCircle12} ${loadingSpinner.skCircle}`}></div>
           </div>
         )
     }
